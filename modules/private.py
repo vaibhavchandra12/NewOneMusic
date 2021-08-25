@@ -1,8 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from config import PROJECT_NAME
-from config import SUPPORT_GROUP
-from config import UPDATES_CHANNEL 
+from config import SUPPORT_GROUP as sgroup
+from config import UPDATES_CHANNEL as uchannel
 from config import BOT_USERNAME
 from config import BOT_NAME as bn
 from helpers.filters import other_filters2
@@ -21,10 +20,10 @@ async def start(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 𝐒𝐮𝐩𝐩𝐨𝐫𝐭", url="https://t.me/{SUPPORT_GROUP}"
+                        "💬 𝐒𝐮𝐩𝐩𝐨𝐫𝐭", url="https://t.me/{sgroup}"
                     ),
                     InlineKeyboardButton(
-                        "🔊 𝐔𝐩𝐝𝐚𝐭𝐞𝐬", url="https://t.me/{UPDATES_CHANNEL}"
+                        "🔊 𝐔𝐩𝐝𝐚𝐭𝐞𝐬", url="https://t.me/{uchannel}"
                     ),
                     InlineKeyboardButton(
                         "🌍 𝐂𝐡𝐚𝐭 𝐆𝐫𝐨𝐮𝐩", url="https://t.me/friends_ka_adda"
@@ -63,7 +62,7 @@ async def gstart(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩", url="https://t.me/OneBotsSupport")
+                        "💬 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩", url="https://t.me/sgroup")
                 ],
                 [
                     InlineKeyboardButton(
