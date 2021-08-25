@@ -9,32 +9,31 @@ from helpers.filters import other_filters2
 async def start(_, message: Message):
     await message.reply_sticker("CAACAgUAAxkBAAELcSphJP9zfZgHUVwbgJr3ctDcwXj2rAACuAcAArHWCFUxMUPx-GRPIiAE")
     await message.reply_text(
-        f"""**Hemlo 👋 
-I am One Music Bot, Use me to play music in your groups Voice Chat.
-Hosted On VPS, So no lag
-✅Need Help /help 
-Owner - @SherShahxD**
+        f"""**𝐇𝐞𝐦𝐥𝐨 👋
+𝑰 𝒂𝒎 𝑶𝒏𝒆 𝑴𝒖𝒔𝒊𝒄 𝑩𝒐𝒕, 𝑼𝒔𝒆 𝒎𝒆 𝒕𝒐 𝒑𝒍𝒂𝒚 𝒎𝒖𝒔𝒊𝒄 𝒊𝒏 𝒚𝒐𝒖𝒓 𝒈𝒓𝒐𝒖𝒑𝒔 𝑽𝒐𝒊𝒄𝒆 𝑪𝒉𝒂𝒕.
+𝙃𝙤𝙨𝙩𝙚𝙙 𝙊𝙣 𝙑𝙋𝙎, 𝙎𝙤 𝙣𝙤 𝙡𝙖𝙜
+𝐎𝐰𝐧𝐞𝐫 - @SherShahxD**
         """,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "💬 Support", url="https://t.me/{SUPPORT_GROUP}"
+                        "💬 𝐒𝐮𝐩𝐩𝐨𝐫𝐭", url="https://t.me/{SUPPORT_GROUP}"
                     ),
                     InlineKeyboardButton(
-                        "🔊 Updates", url="https://t.me/{UPDATES_CHANNEL}"
+                        "🔊 𝐔𝐩𝐝𝐚𝐭𝐞𝐬", url="https://t.me/{UPDATES_CHANNEL}"
                     ),
                     InlineKeyboardButton(
-                        "🌍 Chat Group", url="https://t.me/friends_ka_adda"
+                        "🌍 𝐂𝐡𝐚𝐭 𝐆𝐫𝐨𝐮𝐩", url="https://t.me/friends_ka_adda"
                     )
                 ],
                 [ 
                     InlineKeyboardButton(
-                        "🤔Commands", url="https://t.me/OneUpdates/2"
+                        "🤔 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬", url="https://t.me/OneUpdates/2"
                     )],
                 [ 
                     InlineKeyboardButton(
-                        "➕ Add To Your Group ➕", url="https://t.me/OneMusicRoBot?startgroup=true"
+                        "➕ 𝐀𝐝𝐝 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩 ➕", url="https://t.me/OneMusicRoBot?startgroup=true"
                     )]
             ]
         ),
@@ -48,10 +47,26 @@ async def gstart(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "🌍 Chat Group", url="https://t.me/friends_ka_adda")
+                        "🌍 𝐂𝐡𝐚𝐭 𝐆𝐫𝐨𝐮𝐩", url="https://t.me/friends_ka_adda")
                 ]
             ]
         )
    )
 
+@Client.on_message(filters.command("help") & ~filters.private & ~filters.channel)
+async def gstart(_, message: Message):
+      await message.reply_text("""**🤔𝐍𝐞𝐞𝐝 𝐇𝐞𝐥𝐩?**""",
+      reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "💬 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩", url="https://t.me/{SUPPORT_GROUP}")
+                ],
+                [
+                    InlineKeyboardButton(
+                        "🤔 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬", url="https://t.me/OneUpdates/2")
+                ]
+            ]
+        )
+   )
 
