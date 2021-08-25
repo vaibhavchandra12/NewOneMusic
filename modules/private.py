@@ -1,6 +1,9 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from config import PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL,BOT_USERNAME
+from config import PROJECT_NAME
+from config import SUPPORT_GROUP
+from config import UPDATES_CHANNEL 
+from config import BOT_USERNAME
 from config import BOT_NAME as bn
 from helpers.filters import other_filters2
 
