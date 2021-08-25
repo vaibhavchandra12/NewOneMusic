@@ -19,6 +19,7 @@ from youtube_search import YoutubeSearch
 from config import ARQ_API_KEY
 from config import BOT_NAME as bn
 from config import DURATION_LIMIT
+from config import BOT_USERNAME as bau
 from config import UPDATES_CHANNEL as updateschannel
 from config import que
 from function.admins import admins as a
@@ -46,7 +47,7 @@ def cb_admin_check(func: Callable) -> Callable:
         if cb.from_user.id in admemes:
             return await func(client, cb)
         else:
-            await cb.answer("You ain't allowed!", show_alert=True)
+            await cb.answer("𝐘𝐨𝐮 𝐚𝐢𝐧'𝐭 𝐚𝐥𝐥𝐨𝐰𝐞𝐝!", show_alert=True)
             return
 
     return decorator
@@ -129,18 +130,18 @@ async def playlist(client, message):
         temp.append(t)
     now_playing = temp[0][0]
     by = temp[0][1].mention(style="md")
-    msg = "**Now Playing** in {}".format(message.chat.title)
+    msg = "**𝐍𝐨𝐰 𝐏𝐥𝐚𝐲𝐢𝐧𝐠** 𝐢𝐧 {}".format(message.chat.title)
     msg += "\n- " + now_playing
-    msg += "\n- Req by " + by
+    msg += "\n- 𝐑𝐞𝐪 𝐛𝐲 " + by
     temp.pop(0)
     if temp:
         msg += "\n\n"
-        msg += "**Queue**"
+        msg += "**𝐐𝐮𝐞𝐮𝐞**"
         for song in temp:
             name = song[0]
             usr = song[1].mention(style="md")
             msg += f"\n- {name}"
-            msg += f"\n- Req by {usr}\n"
+            msg += f"\n- 𝐑𝐞𝐪 𝐛𝐲 {usr}\n"
     await message.reply_text(msg)
 
 
@@ -153,10 +154,10 @@ def updated_stats(chat, queue, vol=100):
         stats = "Settings of **{}**".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
-            stats += "Volume : {}%\n".format(vol)
-            stats += "Songs in queue : `{}`\n".format(len(que))
-            stats += "Now Playing : **{}**\n".format(queue[0][0])
-            stats += "Requested by : {}".format(queue[0][1].mention)
+            stats += "𝐕𝐨𝐥𝐮𝐦𝐞 : {}%\n".format(vol)
+            stats += "𝐒𝐨𝐧𝐠𝐬 𝐢𝐧 𝐪𝐮𝐞𝐮𝐞 : `{}`\n".format(len(que))
+            stats += "𝐍𝐨𝐰 𝐏𝐥𝐚𝐲𝐢𝐧𝐠 : **{}**\n".format(queue[0][0])
+            stats += "𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐞𝐝 𝐛𝐲 : {}".format(queue[0][1].mention)
     else:
         stats = None
     return stats
@@ -193,14 +194,14 @@ async def ee(client, message):
     if stats:
         await message.reply(stats)
     else:
-        await message.reply("No VC instances running in this chat")
+        await message.reply("𝐍𝐨 𝐕𝐂 𝐢𝐧𝐬𝐭𝐚𝐧𝐜𝐞𝐬 𝐫𝐮𝐧𝐧𝐢𝐧𝐠 𝐢𝐧 𝐭𝐡𝐢𝐬 𝐜𝐡𝐚𝐭")
 
 
 @Client.on_message(filters.command("player") & filters.group & ~filters.edited)
 @authorized_users_only
 async def settings(client, message):
     if message.chat.id in DISABLED_GROUPS:
-        await message.reply("Music Player is Disabled")
+        await message.reply("𝐌𝐮𝐬𝐢𝐜 𝐏𝐥𝐚𝐲𝐞𝐫 𝐢𝐬 𝐃𝐢𝐬𝐚𝐛𝐥𝐞𝐝")
         return    
     playing = None
     chat_id = get_chat_id(message.chat)
@@ -215,7 +216,7 @@ async def settings(client, message):
         else:
             await message.reply(stats, reply_markup=r_ply("play"))
     else:
-        await message.reply("No VC instances running in this chat")
+        await message.reply("𝐍𝐨 𝐕𝐂 𝐢𝐧𝐬𝐭𝐚𝐧𝐜𝐞𝐬 𝐫𝐮𝐧𝐧𝐢𝐧𝐠 𝐢𝐧 𝐭𝐡𝐢𝐬 𝐜𝐡𝐚𝐭")
 
 
 @Client.on_message(
@@ -278,18 +279,18 @@ async def p_cb(b, cb):
             temp.append(t)
         now_playing = temp[0][0]
         by = temp[0][1].mention(style="md")
-        msg = "**Now Playing** in {}".format(cb.message.chat.title)
+        msg = "**𝐍𝐨𝐰 𝐏𝐥𝐚𝐲𝐢𝐧𝐠** 𝐢𝐧 {}".format(cb.message.chat.title)
         msg += "\n- " + now_playing
-        msg += "\n- Req by " + by
+        msg += "\n- 𝐑𝐞𝐪 𝐛𝐲 " + by
         temp.pop(0)
         if temp:
             msg += "\n\n"
-            msg += "**Queue**"
+            msg += "**𝐐𝐮𝐞𝐮𝐞**"
             for song in temp:
                 name = song[0]
                 usr = song[1].mention(style="md")
                 msg += f"\n- {name}"
-                msg += f"\n- Req by {usr}\n"
+                msg += f"\n- 𝐑𝐞𝐪 𝐛𝐲 {usr}\n"
         await cb.message.edit(msg)
 
 
@@ -346,18 +347,18 @@ async def m_cb(b, cb):
             temp.append(t)
         now_playing = temp[0][0]
         by = temp[0][1].mention(style="md")
-        msg = "**Now Playing** in {}".format(cb.message.chat.title)
+        msg = "**𝐍𝐨𝐰 𝐏𝐥𝐚𝐲𝐢𝐧𝐠** 𝐢𝐧 {}".format(cb.message.chat.title)
         msg += "\n- " + now_playing
-        msg += "\n- Req by " + by
+        msg += "\n- 𝐑𝐞𝐪 𝐛𝐲 " + by
         temp.pop(0)
         if temp:
             msg += "\n\n"
-            msg += "**Queue**"
+            msg += "**𝐐𝐮𝐞𝐮𝐞**"
             for song in temp:
                 name = song[0]
                 usr = song[1].mention(style="md")
                 msg += f"\n- {name}"
-                msg += f"\n- Req by {usr}\n"
+                msg += f"\n- 𝐑𝐞𝐪 𝐛𝐲 {usr}\n"
         await cb.message.edit(msg)
 
     elif type_ == "resume":
@@ -418,7 +419,7 @@ async def m_cb(b, cb):
                 await cb.answer("Skipped")
                 await cb.message.edit((m_chat, qeue), reply_markup=r_ply(the_data))
                 await cb.message.reply_text(
-                    f"- Skipped track\n- Now Playing **{qeue[0][0]}**"
+                    f"- Skipped track\n- 𝐍𝐨𝐰 𝐏𝐥𝐚𝐲𝐢𝐧𝐠 **{qeue[0][0]}**"
                 )
 
     else:
@@ -440,7 +441,7 @@ async def play(_, message: Message):
     global useer
     if message.chat.id in DISABLED_GROUPS:
         return    
-    lel = await message.reply("🔄 **Processing**")
+    lel = await message.reply("ıllıllı **Ꭾяσ¢єѕѕιηg**ıllıllı  ♩✌")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
 
@@ -472,10 +473,10 @@ async def play(_, message: Message):
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message.chat.id, "I joined this group for playing music in VC"
+                        message.chat.id, "𝐈 𝐣𝐨𝐢𝐧𝐞𝐝 𝐭𝐡𝐢𝐬 𝐠𝐫𝐨𝐮𝐩 𝐟𝐨𝐫 𝐩𝐥𝐚𝐲𝐢𝐧𝐠 𝐦𝐮𝐬𝐢𝐜 𝐢𝐧 𝐕𝐂"
                     )
                     await lel.edit(
-                        "<b>helper userbot joined your chat</b>",
+                        "<b>𝐇𝐞𝐥𝐩𝐞𝐫 𝐮𝐬𝐞𝐫𝐛𝐨𝐭 𝐣𝐨𝐢𝐧𝐞𝐝 𝐲𝐨𝐮𝐫 𝐜𝐡𝐚𝐭</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -484,14 +485,14 @@ async def play(_, message: Message):
                     # print(e)
                     await lel.edit(
                         f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
-                        "\n\nOr manually add assistant to your Group and try again</b>",
+                        "\n\nOr manually add @{bau} assistant to your Group and try again</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} Userbot not in this chat, Ask admin to send /play command for first time or add {user.first_name} manually</i>"
+            f"<i> {user.first_name} Userbot not in this chat, Ask admin to send /userbotjoin command for first time or add {user.first_name} manually</i>"
         )
         return
     text_links=None
@@ -714,7 +715,7 @@ async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
         return
-    lel = await message.reply("🔄 **Processing**")
+    lel = await message.reply("ıllıllı **Ꭾяσ¢єѕѕιηg**ıllıllı  ♩✌")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
 
@@ -746,10 +747,10 @@ async def ytplay(_, message: Message):
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message.chat.id, "I joined this group for playing music in VC"
+                        message.chat.id, "𝐈 𝐣𝐨𝐢𝐧𝐞𝐝 𝐭𝐡𝐢𝐬 𝐠𝐫𝐨𝐮𝐩 𝐟𝐨𝐫 𝐩𝐥𝐚𝐲𝐢𝐧𝐠 𝐦𝐮𝐬𝐢𝐜 𝐢𝐧 𝐕𝐂"
                     )
                     await lel.edit(
-                        "<b>helper userbot joined your chat</b>",
+                        "<b>𝐇𝐞𝐥𝐩𝐞𝐫 𝐮𝐬𝐞𝐫𝐛𝐨𝐭 𝐣𝐨𝐢𝐧𝐞𝐝 𝐲𝐨𝐮𝐫 𝐜𝐡𝐚𝐭</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -758,14 +759,14 @@ async def ytplay(_, message: Message):
                     # print(e)
                     await lel.edit(
                         f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
-                        "\n\nOr manually add assistant to your Group and try again</b>",
+                        "\n\nOr manually add @{bau} assistant to your Group and try again</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} Userbot not in this chat, Ask admin to send /play command for first time or add {user.first_name} manually</i>"
+            f"<i> {user.first_name} Userbot not in this chat, Ask admin to send /userbotjoin command for first time or add {user.first_name} manually</i>"
         )
         return
     await lel.edit("🔎 **Finding**")
@@ -858,7 +859,7 @@ async def deezer(client: Client, message_: Message):
     if message_.chat.id in DISABLED_GROUPS:
         return
     global que
-    lel = await message_.reply("🔄 **Processing**")
+    lel = await message_.reply("ıllıllı **Ꭾяσ¢єѕѕιηg**ıllıllı  ♩✌")
     administrators = await get_administrators(message_.chat)
     chid = message_.chat.id
     try:
@@ -889,10 +890,10 @@ async def deezer(client: Client, message_: Message):
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message_.chat.id, "I joined this group for playing music in VC"
+                        message_.chat.id, "𝐈 𝐣𝐨𝐢𝐧𝐞𝐝 𝐭𝐡𝐢𝐬 𝐠𝐫𝐨𝐮𝐩 𝐟𝐨𝐫 𝐩𝐥𝐚𝐲𝐢𝐧𝐠 𝐦𝐮𝐬𝐢𝐜 𝐢𝐧 𝐕𝐂"
                     )
                     await lel.edit(
-                        "<b>helper userbot joined your chat</b>",
+                        "<b>𝐇𝐞𝐥𝐩𝐞𝐫 𝐮𝐬𝐞𝐫𝐛𝐨𝐭 𝐣𝐨𝐢𝐧𝐞𝐝 𝐲𝐨𝐮𝐫 𝐜𝐡𝐚𝐭</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -901,14 +902,14 @@ async def deezer(client: Client, message_: Message):
                     # print(e)
                     await lel.edit(
                         f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
-                        "\n\nOr manually add assistant to your Group and try again</b>",
+                        "\n\nOr manually add @{bau} assistant to your Group and try again</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} Userbot not in this chat, Ask admin to send /play command for first time or add {user.first_name} manually</i>"
+            f"<i> {user.first_name} Userbot not in this chat, Ask admin to send /userbotjoin command for first time or add {user.first_name} manually</i>"
         )
         return
     requested_by = message_.from_user.first_name
@@ -917,7 +918,7 @@ async def deezer(client: Client, message_: Message):
     queryy = text[1]
     query = queryy
     res = lel
-    await res.edit(f"Searching 👀👀👀 for `{queryy}` on deezer")
+    await res.edit(f"𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 👀👀👀 𝐟𝐨𝐫 `{queryy}` 𝐨𝐧 𝐝𝐞𝐞𝐳𝐞𝐫")
     try:
         songs = await arq.deezer(query,1)
         if not songs.ok:
@@ -997,7 +998,7 @@ async def jiosaavn(client: Client, message_: Message):
     global que
     if message_.chat.id in DISABLED_GROUPS:
         return    
-    lel = await message_.reply("🔄 **Processing**")
+    lel = await message_.reply("ıllıllı **Ꭾяσ¢єѕѕιηg**ıllıllı  ♩✌")
     administrators = await get_administrators(message_.chat)
     chid = message_.chat.id
     try:
@@ -1028,10 +1029,10 @@ async def jiosaavn(client: Client, message_: Message):
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message_.chat.id, "I joined this group for playing music in VC"
+                        message_.chat.id, "𝐈 𝐣𝐨𝐢𝐧𝐞𝐝 𝐭𝐡𝐢𝐬 𝐠𝐫𝐨𝐮𝐩 𝐟𝐨𝐫 𝐩𝐥𝐚𝐲𝐢𝐧𝐠 𝐦𝐮𝐬𝐢𝐜 𝐢𝐧 𝐕𝐂"
                     )
                     await lel.edit(
-                        "<b>helper userbot joined your chat</b>",
+                        "<b>𝐇𝐞𝐥𝐩𝐞𝐫 𝐮𝐬𝐞𝐫𝐛𝐨𝐭 𝐣𝐨𝐢𝐧𝐞𝐝 𝐲𝐨𝐮𝐫 𝐜𝐡𝐚𝐭</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -1040,14 +1041,14 @@ async def jiosaavn(client: Client, message_: Message):
                     # print(e)
                     await lel.edit(
                         f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
-                        "\n\nOr manually add @OneAssistant to your Group and try again</b>",
+                        "\n\nOr manually add @{bau} to your Group and try again</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            "<i> helper Userbot not in this chat, Ask admin to send /play command for first time or add assistant manually</i>"
+            "<i> helper Userbot not in this chat, Ask admin to send /userbotjoin command for first time or add assistant manually</i>"
         )
         return
     requested_by = message_.from_user.first_name
@@ -1055,7 +1056,7 @@ async def jiosaavn(client: Client, message_: Message):
     text = message_.text.split(" ", 1)
     query = text[1]
     res = lel
-    await res.edit(f"Searching 👀👀👀 for `{query}` on jio saavn")
+    await res.edit(f"𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 👀👀👀 𝐟𝐨𝐫 `{query}` 𝐨𝐧 𝐬𝐚𝐚𝐯𝐧")
     try:
         songs = await arq.saavn(query)
         if not songs.ok:
